@@ -1,7 +1,6 @@
 /* eslint-disable react/function-component-definition */
-import { node } from "prop-types";
 import React, { useEffect, useState } from "react";
-import type { PageProps} from "gatsby"
+import type { PageProps} from "gatsby";
 
 export const ScreenSizeContext = React.createContext({
     xsDown: false,
