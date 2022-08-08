@@ -1,27 +1,27 @@
 /* eslint-disable react/function-component-definition */
 import React, { useEffect, useState } from "react";
-import type { PageProps} from "gatsby";
+import type { PageProps } from "gatsby";
 
 export const ScreenSizeContext = React.createContext({
-    xsDown: false,
-    smDown: false,
-    smUp: false,
-    mdDown: false,
-    mdUp: false,
-    lgDown: false,
-    lgUp: false,
-    xlUp: false,
-  });
+  xsDown: false,
+  smDown: false,
+  smUp: false,
+  mdDown: false,
+  mdUp: false,
+  lgDown: false,
+  lgUp: false,
+  xlUp: false,
+});
 
 interface Screensize {
-    xsDown: boolean,
-    smDown: boolean,
-    smUp: boolean,
-    mdDown: boolean,
-    mdUp: boolean,
-    lgDown: boolean,
-    lgUp: boolean,
-    xlUp: boolean,
+  xsDown: boolean;
+  smDown: boolean;
+  smUp: boolean;
+  mdDown: boolean;
+  mdUp: boolean;
+  lgDown: boolean;
+  lgUp: boolean;
+  xlUp: boolean;
 }
 
 export const ScreenSizeProvider = ({ children }: PageProps) => {
@@ -38,7 +38,7 @@ export const ScreenSizeProvider = ({ children }: PageProps) => {
 
   const handleResize = () => {
     const winWidth = window.innerWidth;
-    const newScreensize:Screensize = { ...screensize };
+    const newScreensize: Screensize = { ...screensize };
     let screens = [];
 
     if (winWidth < 600) {
@@ -58,7 +58,7 @@ export const ScreenSizeProvider = ({ children }: PageProps) => {
       screens = ["xl", "smUp", "mdUp", "lgUp", "xlUp"];
     }
 
-    screens.forEach(screen => {
+    screens.forEach((screen) => {
       newScreensize[screen as keyof Screensize] = true;
     });
 

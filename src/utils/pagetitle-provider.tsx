@@ -1,10 +1,15 @@
-import { PageProps } from "gatsby";
-import React, { createContext, useState } from "react";
+import type { PageProps } from "gatsby";
+import React, { createContext, Dispatch, SetStateAction, useState } from "react";
 
-export const PageTitleContext = createContext({pageTitle: "", setPageTitle: undefined});
+interface PageTitleContextIF {
+  pageTitle: string;
+  setPageTitle: Dispatch<SetStateAction<string>>
+}
 
-export const PageTitleProvider = ({ children }:PageProps) => {
-  const [pageTitle, setPageTitle] = useState("");
+export const PageTitleContext = createContext<PageTitleContextIF>({pageTitle: "", setPageTitle: () => {}});
+
+export const PageTitleProvider = ({ children }: PageProps) => {
+  const [pageTitle, setPageTitle] = useState<string>("");
 
   return (
     <PageTitleContext.Provider value={{ pageTitle, setPageTitle }}>
