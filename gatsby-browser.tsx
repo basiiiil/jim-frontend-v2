@@ -8,24 +8,29 @@ import "@fontsource/nunito/800.css";
 import "@fontsource/nunito/900.css";
 import * as React from "react";
 import type { GatsbyBrowser } from "gatsby";
-import { ScreenSizeProvider } from "./src/utils/screensize-provider";
-import { PageTitleProvider } from "./src/utils/pagetitle-provider";
-import { ThemeProvider } from "@emotion/react";
+import { StyledEngineProvider, ThemeProvider } from "@mui/material/styles";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
+import { PageTitleProvider } from "./src/utils/PageTitleProvider";
 import "./styles.css";
-import theme from "./src/design/theme";
-import { TopLayout } from "./src/layout/topLayout";
+import { TopLayout } from "./src/layout/TopLayout";
+import jimTheme from "./src/design/theme";
 
 export const wrapPageElement: GatsbyBrowser["wrapPageElement"] = ({
   element,
 }) => {
   return (
-    <ThemeProvider theme={theme}>
-      <TopLayout>
-        <ScreenSizeProvider>
-          <PageTitleProvider>{element}</PageTitleProvider>
-        </ScreenSizeProvider>
-      </TopLayout>
-    </ThemeProvider>
+    <>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={jimTheme}>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <PageTitleProvider>
+              <TopLayout>{element}</TopLayout>
+            </PageTitleProvider>
+          </LocalizationProvider>
+        </ThemeProvider>
+      </StyledEngineProvider>
+    </>
   );
 };

@@ -1,37 +1,65 @@
-import { Theme } from "@emotion/react";
+import { createTheme } from "@mui/material/styles";
 
-const theme:Theme = {
-  colors: {
+
+const jimTheme = createTheme({
+  spacing: 4,
+  palette: {
     primary: {
-      base: "#991A5F",
-      light: "#ab437c",
-      dark: "#7d154e",
+      main: "#991a5f",
+      contrastText: "#fff",
     },
     secondary: {
-      base: "#10b981",
-      light: "#34d399",
-      dark: "#059669",
+      main: "##0eef91",
+    },
+    background: {
+      default: "#ffffff",
     },
     jimgray: {
-      base: "#1e293b",
+      main: "#374151",
     },
-    confirmGreen: {
-      base: "#22c55e",
-      light: "#4ade80",
-      dark: "#16a34a",
+    error: {
+      main: "#dc2626",
     },
-    cancelRed: {
-      base: "#e11d48",
-      light: "#f43f5e",
-      dark: "#be123c",
+    success: {
+      main: "#84cc16",
+    },
+    warning: {
+      main: "#facc15",
     }
   },
-  screen: {
-    sm: "600px",
-    md: "900px",
-    lg: "1200px",
-    xl: "1536px",
+  typography: {
+    fontFamily: [
+      "Nunito",
+      "-apple-system",
+      "BlinkMacSystemFont",
+      '"Segoe UI"',
+      "Roboto",
+      '"Helvetica Neue"',
+      "Arial",
+      "sans-serif",
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(","),
   },
-};
+  components: {
+    MuiTextField: {
+      defaultProps: {
+        margin: "dense",
+        size: "small",
+      },
+    },
+    MuiSelect: {
+      defaultProps: {
+        size: "small",
+      },
+    },
+    MuiContainer: {
+      defaultProps: {
+        disableGutters: true
+      }
+    }
+  },
+})
 
-export default theme;
+export default jimTheme;
